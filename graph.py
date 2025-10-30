@@ -1,5 +1,5 @@
 
-
+from collections import deque
 class graph:
   def __init__(self):
     self.graph = {}
@@ -30,6 +30,50 @@ class graph:
         self.graph[key].remove(vertex)
         
     del self.graph[vertex]
+    
+  def bfs(self, root):
+    visited = []
+    queue = []
+    
+    visited.append(root)
+    queue.append(root)
+    
+    while queue:
+      node = queue.pop(0)
+      
+      for child in self.graph[node]:
+        if child not in visited:
+           visited.append(child)
+           queue.append(child)
+           
+    print(visited)  
+    from collections import deque
+
+  def bfs_level_order(graph, start):
+      visited = set()
+      queue = deque([start])
+      level = 0  # track the level number
+  
+      while queue:
+          level_size = len(queue)  # number of nodes in current level
+          print(f"Level {level}:", end=" ")
+  
+          for _ in range(level_size):
+              node = queue.popleft()
+  
+              if node not in visited:
+                  visited.add(node)
+                  print(node, end=" ")
+  
+                  for neighbor in graph[node]:
+                      if neighbor not in visited:
+                          queue.append(neighbor)
+          
+          print()  # move to next line after each level
+          level += 1
+     
+        
+               
          
         
         
@@ -47,12 +91,19 @@ g.add_edge('A', 'C')
 g.add_edge('B', 'C')
 g.add_edge('B', 'D')
 g.add_edge('D', 'C')
+
+#===================================
 g.show()
 print()     
+#====================================
 g.delete_vertex('D')
 print()
 g.show()
+#=====================================
 print()
 g.add_edge("1" , "2")
+#========================================
+g.bfs('B')
+
 
     
