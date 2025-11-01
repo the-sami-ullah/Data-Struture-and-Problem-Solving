@@ -1,5 +1,9 @@
 
 from collections import deque
+
+
+
+
 class graph:
   def __init__(self):
     self.graph = {}
@@ -71,6 +75,24 @@ class graph:
           
           print()  # move to next line after each level
           level += 1
+          
+  def dfs_iterative(self,start):
+    visited =set()
+    stack = []
+    stack.append(start)
+    
+    while stack:
+      node = stack.pop()
+      if node not in visited:
+        visited.add(node)
+        print(node)
+        for neighbour in reversed(self.graph[node]):
+          if neighbour not in visited:
+            stack.append(neighbour)
+            
+            
+               
+                
      
         
                
