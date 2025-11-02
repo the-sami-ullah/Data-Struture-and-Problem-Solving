@@ -1,6 +1,6 @@
 
 from collections import deque
-from collections import heapq
+import heapq
 
 
 
@@ -89,6 +89,7 @@ class graph:
         for neighbour in reversed(self.graph[node]):
           if neighbour not in visited:
             stack.append(neighbour)
+            
   def shortest_path(n,edges,src):
       adj = {}
       for i in range(n):          
