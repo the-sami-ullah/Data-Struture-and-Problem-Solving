@@ -1,6 +1,6 @@
 
 from collections import deque
-
+from collections import heapq
 
 
 
@@ -89,6 +89,33 @@ class graph:
         for neighbour in reversed(self.graph[node]):
           if neighbour not in visited:
             stack.append(neighbour)
+  def shortest_path(n,edges,src):
+      adj = {}
+      for i in range(n):          
+        adj[i] = []
+      
+      
+      for src,des,weight in edges:
+        adj[src].append([des,weight])
+        
+      shortest = {}
+      
+      minHeap = [[0,src]]
+      
+      while minHeap:
+        w1,n1 = heapq.heappop(minHeap)
+        if n1 in shortest:
+          continue
+        for n2,w2 in adj[n]:
+          if n2 not in shortest:
+            heapq.heapush(minHeap,[w1+w2,n2])
+            
+      
+      for i in range(n):
+        if i not in shortest:
+          shortest[i] = -1
+          
+      return shortest              
             
             
                
